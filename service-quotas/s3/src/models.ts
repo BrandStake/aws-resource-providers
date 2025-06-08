@@ -13,7 +13,7 @@ export class ResourceModel extends BaseModel {
 
     @Expose({ name: 'Buckets' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(Integer, 'buckets', value, obj, []),
         {
             toClassOnly: true,
@@ -22,7 +22,7 @@ export class ResourceModel extends BaseModel {
     buckets?: Optional<integer>;
     @Expose({ name: 'ResourceId' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'resourceId', value, obj, []),
         {
             toClassOnly: true,

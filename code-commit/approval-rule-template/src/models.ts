@@ -17,7 +17,7 @@ export class ResourceModel extends BaseModel {
 
     @Expose({ name: 'Arn' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'arn', value, obj, []),
         {
             toClassOnly: true,
@@ -26,7 +26,7 @@ export class ResourceModel extends BaseModel {
     arn?: Optional<string>;
     @Expose({ name: 'Id' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'id', value, obj, []),
         {
             toClassOnly: true,
@@ -35,7 +35,7 @@ export class ResourceModel extends BaseModel {
     id?: Optional<string>;
     @Expose({ name: 'Name' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'name', value, obj, []),
         {
             toClassOnly: true,
@@ -44,7 +44,7 @@ export class ResourceModel extends BaseModel {
     name?: Optional<string>;
     @Expose({ name: 'Description' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'description', value, obj, []),
         {
             toClassOnly: true,
@@ -56,7 +56,7 @@ export class ResourceModel extends BaseModel {
     content?: Optional<TemplateContent>;
     @Expose({ name: 'CreationDate' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(Number, 'creationDate', value, obj, []),
         {
             toClassOnly: true,
@@ -65,7 +65,7 @@ export class ResourceModel extends BaseModel {
     creationDate?: Optional<number>;
     @Expose({ name: 'LastModifiedDate' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(Number, 'lastModifiedDate', value, obj, []),
         {
             toClassOnly: true,
@@ -74,7 +74,7 @@ export class ResourceModel extends BaseModel {
     lastModifiedDate?: Optional<number>;
     @Expose({ name: 'LastModifiedUser' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'lastModifiedUser', value, obj, []),
         {
             toClassOnly: true,
@@ -83,7 +83,7 @@ export class ResourceModel extends BaseModel {
     lastModifiedUser?: Optional<string>;
     @Expose({ name: 'RuleContentSha256' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'ruleContentSha256', value, obj, []),
         {
             toClassOnly: true,
@@ -144,7 +144,7 @@ export class TemplateContent extends BaseModel {
 
     @Expose({ name: 'Version' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'version', value, obj, []),
         {
             toClassOnly: true,
@@ -153,7 +153,7 @@ export class TemplateContent extends BaseModel {
     version?: Optional<string>;
     @Expose({ name: 'DestinationReferences' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'destinationReferences', value, obj, [Array]),
         {
             toClassOnly: true,
@@ -172,7 +172,7 @@ export class Statement extends BaseModel {
 
     @Expose({ name: 'Type' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'type_', value, obj, []),
         {
             toClassOnly: true,
@@ -181,7 +181,7 @@ export class Statement extends BaseModel {
     type_?: Optional<string>;
     @Expose({ name: 'NumberOfApprovalsNeeded' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(Integer, 'numberOfApprovalsNeeded', value, obj, []),
         {
             toClassOnly: true,
@@ -190,7 +190,7 @@ export class Statement extends BaseModel {
     numberOfApprovalsNeeded?: Optional<integer>;
     @Expose({ name: 'ApprovalPoolMembers' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'approvalPoolMembers', value, obj, [Array]),
         {
             toClassOnly: true,

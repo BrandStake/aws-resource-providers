@@ -1,6 +1,8 @@
 {
-    "extends": "@tsconfig/node12/tsconfig.json",
     "compilerOptions": {
+        "target": "ES2020",
+        "module": "commonjs",
+        "lib": ["es6", "es2020.bigint"],
         "noImplicitAny": true,
         "allowJs": true,
         "alwaysStrict": true,
@@ -11,6 +13,7 @@
         "experimentalDecorators": true,
         "resolveJsonModule": true,
         "esModuleInterop": true,
+        "skipLibCheck": true,
         "outDir": "dist"
     },
     "include": [

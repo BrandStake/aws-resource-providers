@@ -13,7 +13,7 @@ export class ResourceModel extends BaseModel {
 
     @Expose({ name: 'Arn' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'arn', value, obj, []),
         {
             toClassOnly: true,
@@ -22,7 +22,7 @@ export class ResourceModel extends BaseModel {
     arn?: Optional<string>;
     @Expose({ name: 'Url' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'url', value, obj, []),
         {
             toClassOnly: true,
@@ -31,7 +31,7 @@ export class ResourceModel extends BaseModel {
     url?: Optional<string>;
     @Expose({ name: 'ThumbprintList' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'thumbprintList', value, obj, [Array]),
         {
             toClassOnly: true,
@@ -40,7 +40,7 @@ export class ResourceModel extends BaseModel {
     thumbprintList?: Optional<Array<string>>;
     @Expose({ name: 'ClientIdList' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'clientIdList', value, obj, [Array]),
         {
             toClassOnly: true,

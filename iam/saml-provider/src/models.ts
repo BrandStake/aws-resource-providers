@@ -13,7 +13,7 @@ export class ResourceModel extends BaseModel {
 
     @Expose({ name: 'Name' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'name', value, obj, []),
         {
             toClassOnly: true,
@@ -22,7 +22,7 @@ export class ResourceModel extends BaseModel {
     name?: Optional<string>;
     @Expose({ name: 'MetadataDocument' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'metadataDocument', value, obj, []),
         {
             toClassOnly: true,
@@ -31,7 +31,7 @@ export class ResourceModel extends BaseModel {
     metadataDocument?: Optional<string>;
     @Expose({ name: 'Arn' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'arn', value, obj, []),
         {
             toClassOnly: true,

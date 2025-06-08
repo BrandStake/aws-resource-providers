@@ -13,7 +13,7 @@ export class ResourceModel extends BaseModel {
 
     @Expose({ name: 'ResourceId' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'resourceId', value, obj, []),
         {
             toClassOnly: true,
@@ -22,7 +22,7 @@ export class ResourceModel extends BaseModel {
     resourceId?: Optional<string>;
     @Expose({ name: 'StandardCode' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'standardCode', value, obj, []),
         {
             toClassOnly: true,
@@ -31,7 +31,7 @@ export class ResourceModel extends BaseModel {
     standardCode?: Optional<string>;
     @Expose({ name: 'ControlId' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'controlId', value, obj, []),
         {
             toClassOnly: true,
@@ -40,7 +40,7 @@ export class ResourceModel extends BaseModel {
     controlId?: Optional<string>;
     @Expose({ name: 'SuppressionsUpdatedBy' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'suppressionsUpdatedBy', value, obj, []),
         {
             toClassOnly: true,
@@ -49,7 +49,7 @@ export class ResourceModel extends BaseModel {
     suppressionsUpdatedBy?: Optional<string>;
     @Expose({ name: 'SuppressCurrentFindingsOnDisabled' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(Boolean, 'suppressCurrentFindingsOnDisabled', value, obj, []),
         {
             toClassOnly: true,
@@ -58,7 +58,7 @@ export class ResourceModel extends BaseModel {
     suppressCurrentFindingsOnDisabled?: Optional<boolean>;
     @Expose({ name: 'ControlStatus' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'controlStatus', value, obj, []),
         {
             toClassOnly: true,
@@ -67,7 +67,7 @@ export class ResourceModel extends BaseModel {
     controlStatus?: Optional<string>;
     @Expose({ name: 'DisabledReason' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'disabledReason', value, obj, []),
         {
             toClassOnly: true,

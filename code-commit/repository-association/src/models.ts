@@ -13,7 +13,7 @@ export class ResourceModel extends BaseModel {
 
     @Expose({ name: 'Arn' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'arn', value, obj, []),
         {
             toClassOnly: true,
@@ -22,7 +22,7 @@ export class ResourceModel extends BaseModel {
     arn?: Optional<string>;
     @Expose({ name: 'ApprovalRuleTemplateArn' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'approvalRuleTemplateArn', value, obj, []),
         {
             toClassOnly: true,
@@ -31,7 +31,7 @@ export class ResourceModel extends BaseModel {
     approvalRuleTemplateArn?: Optional<string>;
     @Expose({ name: 'ApprovalRuleTemplateName' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'approvalRuleTemplateName', value, obj, []),
         {
             toClassOnly: true,
@@ -40,7 +40,7 @@ export class ResourceModel extends BaseModel {
     approvalRuleTemplateName?: Optional<string>;
     @Expose({ name: 'RepositoryNames' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'repositoryNames', value, obj, [Array]),
         {
             toClassOnly: true,

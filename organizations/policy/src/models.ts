@@ -13,7 +13,7 @@ export class ResourceModel extends BaseModel {
 
     @Expose({ name: 'Content' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'content', value, obj, []),
         {
             toClassOnly: true,
@@ -22,7 +22,7 @@ export class ResourceModel extends BaseModel {
     content?: Optional<string>;
     @Expose({ name: 'PolicyDocument' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(Object, 'policyDocument', value, obj, [Map]),
         {
             toClassOnly: true,
@@ -31,7 +31,7 @@ export class ResourceModel extends BaseModel {
     policyDocument?: Optional<Map<string, object>>;
     @Expose({ name: 'Description' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'description', value, obj, []),
         {
             toClassOnly: true,
@@ -40,7 +40,7 @@ export class ResourceModel extends BaseModel {
     description?: Optional<string>;
     @Expose({ name: 'Name' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'name', value, obj, []),
         {
             toClassOnly: true,
@@ -49,7 +49,7 @@ export class ResourceModel extends BaseModel {
     name?: Optional<string>;
     @Expose({ name: 'PolicyType' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'policyType', value, obj, []),
         {
             toClassOnly: true,
@@ -58,7 +58,7 @@ export class ResourceModel extends BaseModel {
     policyType?: Optional<string>;
     @Expose({ name: 'TargetIds' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'targetIds', value, obj, [Array]),
         {
             toClassOnly: true,
@@ -67,7 +67,7 @@ export class ResourceModel extends BaseModel {
     targetIds?: Optional<Array<string>>;
     @Expose({ name: 'ResourceId' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'resourceId', value, obj, []),
         {
             toClassOnly: true,

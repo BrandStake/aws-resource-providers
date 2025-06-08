@@ -13,7 +13,7 @@ export class ResourceModel extends BaseModel {
 
     @Expose({ name: 'Arn' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'arn', value, obj, []),
         {
             toClassOnly: true,
@@ -22,7 +22,7 @@ export class ResourceModel extends BaseModel {
     arn?: Optional<string>;
     @Expose({ name: 'AccountId' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'accountId', value, obj, []),
         {
             toClassOnly: true,
@@ -31,7 +31,7 @@ export class ResourceModel extends BaseModel {
     accountId?: Optional<string>;
     @Expose({ name: 'DisableSupportCaseCreation' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(Boolean, 'disableSupportCaseCreation', value, obj, []),
         {
             toClassOnly: true,
@@ -40,7 +40,7 @@ export class ResourceModel extends BaseModel {
     disableSupportCaseCreation?: Optional<boolean>;
     @Expose({ name: 'SupportLevel' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'supportLevel', value, obj, []),
         {
             toClassOnly: true,
@@ -49,7 +49,7 @@ export class ResourceModel extends BaseModel {
     supportLevel?: Optional<string>;
     @Expose({ name: 'CCEmailAddresses' })
     @Transform(
-        (value: any, obj: any) =>
+        ({ value, obj }) =>
             transformValue(String, 'cCEmailAddresses', value, obj, [Array]),
         {
             toClassOnly: true,
