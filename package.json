@@ -3,8 +3,11 @@
     "version": "0.1.0",
     "description": "A community driven repository where you can find AWS Resource Type Providers for different purposes.",
     "private": true,
+    "workspaces": [
+        "**/*"
+    ],
     "scripts": {
-        "bootstrap": "npm ci --optional && npx lerna bootstrap --hoist",
+        "bootstrap": "npm install",
         "reset": "npm run cleanup && npx lerna exec --stream --parallel -- rm -rf ./node_modules ./build && npm run bootstrap",
         "cleanup": "npx lerna run cleanup --stream --parallel",
         "build": "npx lerna run build",
@@ -19,8 +22,8 @@
         "postinstall": "patch-package"
     },
     "engines": {
-        "node": ">=12.0.0",
-        "npm": ">=6.9.0"
+        "node": ">=18.0.0",
+        "npm": ">=8.0.0"
     },
     "repository": {
         "type": "git",
@@ -57,7 +60,7 @@
         "jest": "^27.4.7",
         "jest-circus": "^27.4.6",
         "jest-silent-reporter": "^0.5.0",
-        "lerna": "^4.0.0",
+        "lerna": "^8.1.8",
         "npm-run-all": "^4.1.5",
         "patch-package": "^6.4.7",
         "prettier": "^2.5.1",

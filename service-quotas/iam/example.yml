@@ -1,6 +1,0 @@
-AWSTemplateFormatVersion: 2010-09-09
-Resources:
-  IAMRoleQuota:
-    Type: 'Community::ServiceQuotas::IAM'
-    Properties:
-      Roles: 1000
