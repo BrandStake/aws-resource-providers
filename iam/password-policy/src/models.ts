@@ -13,7 +13,7 @@ export class ResourceModel extends BaseModel {
 
     @Expose({ name: 'ResourceId' })
     @Transform(
-        ({ value, obj }) =>
+        (value: any, obj: any) =>
             transformValue(String, 'resourceId', value, obj, []),
         {
             toClassOnly: true,
@@ -22,7 +22,7 @@ export class ResourceModel extends BaseModel {
     resourceId?: Optional<string>;
     @Expose({ name: 'MinimumPasswordLength' })
     @Transform(
-        ({ value, obj }) =>
+        (value: any, obj: any) =>
             transformValue(Integer, 'minimumPasswordLength', value, obj, []),
         {
             toClassOnly: true,
@@ -31,7 +31,7 @@ export class ResourceModel extends BaseModel {
     minimumPasswordLength?: Optional<integer>;
     @Expose({ name: 'RequireSymbols' })
     @Transform(
-        ({ value, obj }) =>
+        (value: any, obj: any) =>
             transformValue(Boolean, 'requireSymbols', value, obj, []),
         {
             toClassOnly: true,
@@ -40,7 +40,7 @@ export class ResourceModel extends BaseModel {
     requireSymbols?: Optional<boolean>;
     @Expose({ name: 'RequireNumbers' })
     @Transform(
-        ({ value, obj }) =>
+        (value: any, obj: any) =>
             transformValue(Boolean, 'requireNumbers', value, obj, []),
         {
             toClassOnly: true,
@@ -49,7 +49,7 @@ export class ResourceModel extends BaseModel {
     requireNumbers?: Optional<boolean>;
     @Expose({ name: 'RequireUppercaseCharacters' })
     @Transform(
-        ({ value, obj }) =>
+        (value: any, obj: any) =>
             transformValue(Boolean, 'requireUppercaseCharacters', value, obj, []),
         {
             toClassOnly: true,
@@ -58,7 +58,7 @@ export class ResourceModel extends BaseModel {
     requireUppercaseCharacters?: Optional<boolean>;
     @Expose({ name: 'RequireLowercaseCharacters' })
     @Transform(
-        ({ value, obj }) =>
+        (value: any, obj: any) =>
             transformValue(Boolean, 'requireLowercaseCharacters', value, obj, []),
         {
             toClassOnly: true,
@@ -67,7 +67,7 @@ export class ResourceModel extends BaseModel {
     requireLowercaseCharacters?: Optional<boolean>;
     @Expose({ name: 'AllowUsersToChangePassword' })
     @Transform(
-        ({ value, obj }) =>
+        (value: any, obj: any) =>
             transformValue(Boolean, 'allowUsersToChangePassword', value, obj, []),
         {
             toClassOnly: true,
@@ -76,7 +76,7 @@ export class ResourceModel extends BaseModel {
     allowUsersToChangePassword?: Optional<boolean>;
     @Expose({ name: 'ExpirePasswords' })
     @Transform(
-        ({ value, obj }) =>
+        (value: any, obj: any) =>
             transformValue(Boolean, 'expirePasswords', value, obj, []),
         {
             toClassOnly: true,
@@ -85,7 +85,7 @@ export class ResourceModel extends BaseModel {
     expirePasswords?: Optional<boolean>;
     @Expose({ name: 'MaxPasswordAge' })
     @Transform(
-        ({ value, obj }) =>
+        (value: any, obj: any) =>
             transformValue(Integer, 'maxPasswordAge', value, obj, []),
         {
             toClassOnly: true,
@@ -94,7 +94,7 @@ export class ResourceModel extends BaseModel {
     maxPasswordAge?: Optional<integer>;
     @Expose({ name: 'PasswordReusePrevention' })
     @Transform(
-        ({ value, obj }) =>
+        (value: any, obj: any) =>
             transformValue(Integer, 'passwordReusePrevention', value, obj, []),
         {
             toClassOnly: true,
@@ -103,7 +103,7 @@ export class ResourceModel extends BaseModel {
     passwordReusePrevention?: Optional<integer>;
     @Expose({ name: 'HardExpiry' })
     @Transform(
-        ({ value, obj }) =>
+        (value: any, obj: any) =>
             transformValue(Boolean, 'hardExpiry', value, obj, []),
         {
             toClassOnly: true,
