@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import { STS } from 'aws-sdk';
 import { on, AwsServiceMockBuilder } from '@jurijzahn8019/aws-promise-jest-mock';
 import {
@@ -9,9 +10,8 @@ import {
     handlerEvent,
     OperationStatus,
     SessionProxy,
-    transformValue,
 } from '@amazon-web-services-cloudformation/cloudformation-cli-typescript-lib';
-import { Exclude, Expose, Transform } from 'class-transformer';
+import { Exclude, Expose } from 'class-transformer';
 import { commonAws, HandlerArgs } from '../src/common-decorator';
 
 jest.mock('aws-sdk');
@@ -27,14 +27,7 @@ describe('when calling handler', () => {
         ['constructor']: typeof MockModel;
         @Exclude()
         public static readonly TYPE_NAME: string = 'Organization::Service::Resource';
-        
-        @Expose({ name: 'id' })
-        @Transform(
-            (value: any, obj: any) =>
-                transformValue(String, 'id', value, obj, []),
-            { toClassOnly: true }
-        )
-        id?: string;
+        @Expose() id?: string;
     }
 
     const modelList = [new MockModel({ id: '1' }), new MockModel({ id: '2' })];
