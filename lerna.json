@@ -1,9 +1,3 @@
 {
-  "version": "independent",
-  "npmClient": "npm",
-  "command": {
-    "run": {
-      "npmClient": "npm"
-    }
-  }
+  "version": "independent"
 }
