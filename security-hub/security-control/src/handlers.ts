@@ -1,6 +1,6 @@
 
 import { commonAws, HandlerArgs } from 'aws-resource-providers-common';
-import { AwsSecurityFindingIdentifier, SecurityHub } from '@aws-sdk/client-securityhub';
+import { AwsSecurityFindingIdentifier, SecurityHub, AssociationStatus } from '@aws-sdk/client-securityhub';
 import { Action, BaseResource, exceptions, handlerEvent, LoggerProxy, OperationStatus, Optional, ProgressEvent, ResourceHandlerRequest, SessionProxy } from '@amazon-web-services-cloudformation/cloudformation-cli-typescript-lib';
 import { ResourceModel, TypeConfigurationModel } from './models';
 
@@ -103,7 +103,7 @@ class Resource extends BaseResource<ResourceModel> {
             const StandardsControlAssociationUpdates = associations.StandardsControlAssociationSummaries.map(x => ({
                 SecurityControlId: x.SecurityControlId,
                 StandardsArn: x.StandardsArn,
-                AssociationStatus: controlStatus,
+                AssociationStatus: controlStatus as AssociationStatus,
                 ...(controlStatus === "DISABLED" ? { UpdatedReason: disabledReason } : {}),
             }));
 
@@ -152,7 +152,7 @@ class Resource extends BaseResource<ResourceModel> {
             const StandardsControlAssociationUpdates = associations.StandardsControlAssociationSummaries.map(x => ({
                 SecurityControlId: x.SecurityControlId,
                 StandardsArn: x.StandardsArn,
-                AssociationStatus: controlStatus,
+                AssociationStatus: controlStatus as AssociationStatus,
                 ...(controlStatus === "DISABLED" ? { UpdatedReason: disabledReason } : {}),
             }));
 
@@ -207,7 +207,7 @@ class Resource extends BaseResource<ResourceModel> {
             const StandardsControlAssociationUpdates = associations.StandardsControlAssociationSummaries.map(x => ({
                 SecurityControlId: x.SecurityControlId,
                 StandardsArn: x.StandardsArn,
-                AssociationStatus: "ENABLED",
+                AssociationStatus: "ENABLED" as AssociationStatus,
             }));
 
 
