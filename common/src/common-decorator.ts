@@ -106,22 +106,47 @@ export function commonAws<T extends Record<string, any>, R extends BaseModel, C 
 
             const client: Client = retrieveClient(session, service || serviceName);
 
-            if (debug) logger.log({ action, message: 'before perform common task' });
-            const modified = await originalMethod.apply(this, [action, handlerArgs, client, model]);
-            if (debug) logger.log({ action, message: 'after perform common task' });
+            try {
+                if (debug) logger.log({ action, message: 'before perform common task' });
+                const modified = await originalMethod.apply(this, [action, handlerArgs, client, model]);
+                if (debug) logger.log({ action, message: 'after perform common task' });
 
-            if (modified !== undefined) {
-                if (Array.isArray(modified)) {
-                    progress.resourceModel = null;
-                    progress.resourceModels = modified;
-                } else {
-                    progress.resourceModel = modified;
-                    progress.resourceModels = null;
+                if (modified !== undefined) {
+                    if (Array.isArray(modified)) {
+                        progress.resourceModel = null;
+                        progress.resourceModels = modified;
+                    } else {
+                        progress.resourceModel = modified;
+                        progress.resourceModels = null;
+                    }
                 }
-            }
 
-            progress.status = OperationStatus.Success;
-            return Promise.resolve(progress);
+                progress.status = OperationStatus.Success;
+                return Promise.resolve(progress);
+            } catch (err) {
+                progress.status = OperationStatus.Failed;
+                progress.resourceModel = null;
+                progress.resourceModels = null;
+                
+                // Map known CloudFormation exceptions to their error codes
+                if (err instanceof exceptions.NotFound) {
+                    progress.errorCode = (exceptions.NotFound as any).name;
+                } else if (err instanceof exceptions.AlreadyExists) {
+                    progress.errorCode = (exceptions.AlreadyExists as any).name;
+                } else if (err instanceof exceptions.InvalidRequest) {
+                    progress.errorCode = (exceptions.InvalidRequest as any).name;
+                } else if (err instanceof exceptions.NotUpdatable) {
+                    progress.errorCode = (exceptions.NotUpdatable as any).name;
+                } else if (err instanceof exceptions.InvalidCredentials) {
+                    progress.errorCode = (exceptions.InvalidCredentials as any).name;
+                } else {
+                    // Default to InternalFailure for unknown exceptions
+                    progress.errorCode = (exceptions.InternalFailure as any).name;
+                }
+                
+                progress.message = err?.message ? `Error: ${err.message} (${err.constructor.name})` : 'Unknown error occurred';
+                return Promise.resolve(progress);
+            }
         };
         return descriptor;
     };

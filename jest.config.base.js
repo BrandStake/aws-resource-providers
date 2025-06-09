@@ -4,11 +4,12 @@
 
 module.exports = {
     testEnvironment: 'node',
+    setupFilesAfterEnv: ['reflect-metadata'],
     transform: {
-        '^.+\\.(t|j)sx?$': ['@swc/jest', {
-            jsc: {
-                parser: { syntax: 'typescript', tsx: false, decorators: true },
-                transform: { legacyDecorator: true, decoratorMetadata: true },
+        '^.+\\.(t|j)sx?$': ['ts-jest', {
+            tsconfig: {
+                experimentalDecorators: true,
+                emitDecoratorMetadata: true,
                 target: 'es2019'
             }
         }],

@@ -17,7 +17,7 @@ const IDENTIFIER = 'f3390613-b2b5-4c31-a4c6-66813dff96a6';
 
 jest.mock('aws-sdk');
 jest.mock('uuid', () => ({
-    v4: () => IDENTIFIER,
+    v4: jest.fn(() => IDENTIFIER),
 }));
 
 describe('when calling handler', () => {
