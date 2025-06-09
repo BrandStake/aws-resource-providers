@@ -1,5 +1,5 @@
 import { IAM } from 'aws-sdk';
-import uuid from 'uuid';
+import * as uuid from 'uuid';
 import { on, AwsServiceMockBuilder } from '@jurijzahn8019/aws-promise-jest-mock';
 import { Action, exceptions, OperationStatus, SessionProxy } from '@amazon-web-services-cloudformation/cloudformation-cli-typescript-lib';
 import createInvalidRequest from './data/create-invalid-request.json';
@@ -15,11 +15,9 @@ import { resource, PasswordPolicy } from '../src/handlers';
 const IDENTIFIER = 'f3390613-b2b5-4c31-a4c6-66813dff96a6';
 
 jest.mock('aws-sdk');
-jest.mock('uuid', () => {
-    return {
-        v4: () => IDENTIFIER,
-    };
-});
+jest.mock('uuid', () => ({
+    v4: () => IDENTIFIER,
+}));
 
 describe('when calling handler', () => {
     let testEntrypointPayload: any;
