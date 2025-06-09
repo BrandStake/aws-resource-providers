@@ -21,7 +21,7 @@
     "dependencies": {
         "aws-resource-providers-common": "^0.6.0",
         "@amazon-web-services-cloudformation/cloudformation-cli-typescript-lib": "^1.0.1",
-        "class-transformer": "0.3.1",
+        "class-transformer": "0.5.1",
         "uuid": "^7.0.3"
     },
     "devDependencies": {
