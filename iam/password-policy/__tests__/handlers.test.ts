@@ -62,14 +62,14 @@ describe('when calling handler', () => {
     test('create operation successful - iam password policy', async () => {
         const spyUuid = jest.spyOn(uuid, 'v4');
         const request = fixtureMap.get(Action.Create);
-        const progress = await resource.testEntrypoint({ ...testEntrypointPayload, action: Action.Create, request }, null);
+        const progress = await resource.testEntrypoint({ ...testEntrypointPayload, action: Action.Create, request });
         const model = PasswordPolicy.deserialize({
-            ...request.desiredResourceState,
+            ...request?.desiredResourceState,
             ResourceId: IDENTIFIER,
         });
         expect(spyUuid).toHaveBeenCalledTimes(1);
         expect(progress).toMatchObject({ status: OperationStatus.Success, message: '', callbackDelaySeconds: 0 });
-        expect(progress.resourceModel.serialize()).toMatchObject(model.serialize());
+        expect(progress.resourceModel?.serialize()).toMatchObject(model.serialize());
     });
 
     test('create operation fail generic - iam password policy', async () => {
@@ -79,7 +79,7 @@ describe('when calling handler', () => {
         const spyRetrieve = jest.spyOn<any, any>(resource, 'retrievePasswordPolicy');
         const spyUpsert = jest.spyOn<any, any>(resource, 'upsertPasswordPolicy');
         const request = fixtureMap.get(Action.Create);
-        const progress = await resource.testEntrypoint({ ...testEntrypointPayload, action: Action.Create, request }, null);
+        const progress = await resource.testEntrypoint({ ...testEntrypointPayload, action: Action.Create, request });
         expect(progress).toMatchObject({ status: OperationStatus.Failed, errorCode: exceptions.InternalFailure.name });
         expect(mockGet.mock).toHaveBeenCalledTimes(1);
         expect(spyRetrieve).toHaveBeenCalledTimes(1);
@@ -91,32 +91,32 @@ describe('when calling handler', () => {
 
     test('create operation fail with contain identifier - iam password policy', async () => {
         const request = createInvalidRequest;
-        const progress = await resource.testEntrypoint({ ...testEntrypointPayload, action: Action.Create, request }, null);
+        const progress = await resource.testEntrypoint({ ...testEntrypointPayload, action: Action.Create, request });
         expect(progress).toMatchObject({ status: OperationStatus.Failed, errorCode: exceptions.InvalidRequest.name });
     });
 
     test('update operation successful - iam password policy', async () => {
         const request = fixtureMap.get(Action.Update);
-        const progress = await resource.testEntrypoint({ ...testEntrypointPayload, action: Action.Update, request }, null);
+        const progress = await resource.testEntrypoint({ ...testEntrypointPayload, action: Action.Update, request });
         expect(progress).toMatchObject({ status: OperationStatus.Success, message: '', callbackDelaySeconds: 0 });
-        expect(progress.resourceModel.serialize()).toMatchObject(request.desiredResourceState);
+        expect(progress.resourceModel?.serialize()).toMatchObject(request?.desiredResourceState);
     });
 
     test('update operation fail not found - iam password policy', async () => {
         const request = updateNotFound;
-        const progress = await resource.testEntrypoint({ ...testEntrypointPayload, action: Action.Update, request }, null);
+        const progress = await resource.testEntrypoint({ ...testEntrypointPayload, action: Action.Update, request });
         expect(progress).toMatchObject({ status: OperationStatus.Failed, errorCode: exceptions.NotFound.name });
     });
 
     test('update operation fail not updatable - iam password policy', async () => {
         const request = updateNotUpdatable;
-        const progress = await resource.testEntrypoint({ ...testEntrypointPayload, action: Action.Update, request }, null);
+        const progress = await resource.testEntrypoint({ ...testEntrypointPayload, action: Action.Update, request });
         expect(progress).toMatchObject({ status: OperationStatus.Failed, errorCode: exceptions.NotUpdatable.name });
     });
 
     test('delete operation successful - iam password policy', async () => {
         const request = fixtureMap.get(Action.Delete);
-        const progress = await resource.testEntrypoint({ ...testEntrypointPayload, action: Action.Delete, request }, null);
+        const progress = await resource.testEntrypoint({ ...testEntrypointPayload, action: Action.Delete, request });
         expect(progress).toMatchObject({ status: OperationStatus.Success, message: '', callbackDelaySeconds: 0 });
         expect(progress.resourceModel).toBeNull();
     });
@@ -125,7 +125,7 @@ describe('when calling handler', () => {
         const mockGet = iam.mock('getAccountPasswordPolicy').reject({ ...new Error(), code: 'NoSuchEntity' });
         const spyRetrieve = jest.spyOn<any, any>(resource, 'retrievePasswordPolicy');
         const request = fixtureMap.get(Action.Delete);
-        const progress = await resource.testEntrypoint({ ...testEntrypointPayload, action: Action.Delete, request }, null);
+        const progress = await resource.testEntrypoint({ ...testEntrypointPayload, action: Action.Delete, request });
         expect(progress).toMatchObject({ status: OperationStatus.Failed, errorCode: exceptions.NotFound.name });
         expect(mockGet.mock).toHaveBeenCalledTimes(1);
         expect(spyRetrieve).toHaveBeenCalledTimes(1);
@@ -135,23 +135,23 @@ describe('when calling handler', () => {
     test('delete operation fail generic - iam password policy', async () => {
         const mockDelete = iam.mock('deleteAccountPasswordPolicy').reject({ ...new Error(), code: 'ServiceUnavailableException' });
         const request = fixtureMap.get(Action.Delete);
-        const progress = await resource.testEntrypoint({ ...testEntrypointPayload, action: Action.Delete, request }, null);
+        const progress = await resource.testEntrypoint({ ...testEntrypointPayload, action: Action.Delete, request });
         expect(progress).toMatchObject({ status: OperationStatus.Failed, errorCode: exceptions.InternalFailure.name });
         expect(mockDelete.mock).toHaveBeenCalledTimes(1);
     });
 
     test('read operation successful - iam password policy', async () => {
         const request = fixtureMap.get(Action.Read);
-        const progress = await resource.testEntrypoint({ ...testEntrypointPayload, action: Action.Read, request }, null);
+        const progress = await resource.testEntrypoint({ ...testEntrypointPayload, action: Action.Read, request });
         expect(progress).toMatchObject({ status: OperationStatus.Success, message: '', callbackDelaySeconds: 0 });
-        expect(progress.resourceModel.serialize()).toMatchObject(request.desiredResourceState);
+        expect(progress.resourceModel?.serialize()).toMatchObject(request?.desiredResourceState);
     });
 
     test('list operation successful - iam password policy', async () => {
         const request = fixtureMap.get(Action.List);
-        const progress = await resource.testEntrypoint({ ...testEntrypointPayload, action: Action.List, request }, null);
+        const progress = await resource.testEntrypoint({ ...testEntrypointPayload, action: Action.List, request });
         expect(progress).toMatchObject({ status: OperationStatus.Success, message: '', callbackDelaySeconds: 0 });
-        expect(progress.resourceModels[0].serialize()).toMatchObject(request.desiredResourceState);
+        expect(progress.resourceModels?.[0]?.serialize()).toMatchObject(request?.desiredResourceState);
     });
 
     test('all operations fail without session - iam password policy', async () => {
@@ -159,7 +159,7 @@ describe('when calling handler', () => {
         spySession.mockReturnValue(null);
         jest.spyOn(global, 'setTimeout').mockImplementation((callback: any) => callback());
         for (const [action, request] of fixtureMap) {
-            const progress = await resource.testEntrypoint({ ...testEntrypointPayload, action, request }, null);
+            const progress = await resource.testEntrypoint({ ...testEntrypointPayload, action, request });
             expect(progress.errorCode).toBe(exceptions.InvalidCredentials.name);
         }
     });
