@@ -2,9 +2,9 @@ import { EC2 } from 'aws-sdk';
 import * as uuid from 'uuid';
 import { on, AwsServiceMockBuilder } from '@jurijzahn8019/aws-promise-jest-mock';
 import { Action, exceptions, SessionProxy, OperationStatus } from '@amazon-web-services-cloudformation/cloudformation-cli-typescript-lib';
-import createFixture from './data/create-success.json';
-import readFixture from './data/read-success.json';
-import deleteFixture from './data/delete-success.json';
+const createFixture = require('./data/create-success.json');
+const readFixture = require('./data/read-success.json');
+const deleteFixture = require('./data/delete-success.json');
 import { resource } from '../src/handlers';
 
 const IDENTIFIER = '4b90a7e4-b790-456b-a937-0cfdfa211dfe';

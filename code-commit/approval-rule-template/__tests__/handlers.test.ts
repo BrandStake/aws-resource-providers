@@ -1,10 +1,10 @@
 import { CodeCommit } from 'aws-sdk';
 import { on, AwsServiceMockBuilder } from '@jurijzahn8019/aws-promise-jest-mock';
 import { Action, exceptions, OperationStatus, SessionProxy } from '@amazon-web-services-cloudformation/cloudformation-cli-typescript-lib';
-import createFixture from './data/create-success.json';
-import deleteFixture from './data/delete-success.json';
-import readFixture from './data/read-success.json';
-import updateFixture from './data/update-success.json';
+const createFixture = require('./data/create-success.json');
+const deleteFixture = require('./data/delete-success.json');
+const readFixture = require('./data/read-success.json');
+const updateFixture = require('./data/update-success.json');
 import { resource } from '../src/handlers';
 
 const IDENTIFIER = '123456789012';

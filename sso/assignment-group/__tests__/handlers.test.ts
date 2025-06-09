@@ -2,10 +2,10 @@ import { on, AwsServiceMockBuilder, AwsFunctionMockBuilder } from '@jurijzahn801
 import { SSOAdmin } from 'aws-sdk';
 import * as uuid from 'uuid';
 import { Action, exceptions, OperationStatus, SessionProxy } from '@amazon-web-services-cloudformation/cloudformation-cli-typescript-lib';
-import createFixture from './data/create-success.json';
-import deleteFixture from './data/delete-success.json';
-import readFixture from './data/read-success.json';
-import updateFixture from './data/update-success.json';
+const createFixture = require('./data/create-success.json');
+const deleteFixture = require('./data/delete-success.json');
+const readFixture = require('./data/read-success.json');
+const updateFixture = require('./data/update-success.json');
 import { resource } from '../src/handlers';
 
 const IDENTIFIER = '8f9be413-f9cc-49a1-b901-0a59a6f126c2';

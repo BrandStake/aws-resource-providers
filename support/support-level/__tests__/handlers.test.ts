@@ -1,10 +1,10 @@
 import { ServiceQuotas } from 'aws-sdk';
 import { on, AwsServiceMockBuilder } from '@jurijzahn8019/aws-promise-jest-mock';
 import { Action, exceptions, SessionProxy } from '@amazon-web-services-cloudformation/cloudformation-cli-typescript-lib';
-import createFixture from '../sam-tests/create.json';
-import deleteFixture from '../sam-tests/delete.json';
-import readFixture from '../sam-tests/read.json';
-import updateFixture from '../sam-tests/update.json';
+const createFixture = require('../sam-tests/create.json');
+const deleteFixture = require('../sam-tests/delete.json');
+const readFixture = require('../sam-tests/read.json');
+const updateFixture = require('../sam-tests/update.json');
 import { resource } from '../src/handlers';
 
 jest.mock('aws-sdk');
