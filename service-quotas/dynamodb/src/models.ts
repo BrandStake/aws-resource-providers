@@ -13,7 +13,7 @@ export class ResourceModel extends BaseModel {
 
     @Expose({ name: 'Tables' })
     @Transform(
-        ({ value, obj }) =>
+        ({ value, obj }: { value: any, obj: any }) =>
             transformValue(Integer, 'tables', value, obj, []),
         {
             toClassOnly: true,
@@ -22,7 +22,7 @@ export class ResourceModel extends BaseModel {
     tables?: Optional<integer>;
     @Expose({ name: 'Arn' })
     @Transform(
-        ({ value, obj }) =>
+        ({ value, obj }: { value: any, obj: any }) =>
             transformValue(String, 'arn', value, obj, []),
         {
             toClassOnly: true,
@@ -47,5 +47,12 @@ export class ResourceModel extends BaseModel {
         // only return the identifiers if any can be used
         return identifiers.length === 0 ? null : identifiers;
     }
+}
+
+export class TypeConfigurationModel extends BaseModel {
+    ['constructor']: typeof TypeConfigurationModel;
+
+
+
 }
 

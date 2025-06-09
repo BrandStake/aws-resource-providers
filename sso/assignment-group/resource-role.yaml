@@ -32,6 +32,7 @@ Resources:
                 Action:
                 - "iam:CreateRole"
                 - "iam:GetSAMLProvider"
+                - "iam:ListRolePolicies"
                 - "sso:CreateAccountAssignment"
                 - "sso:DeleteAccountAssignment"
                 - "sso:DescribeAccountAssignmentCreationStatus"

@@ -22,7 +22,7 @@ Resources:
               StringLike:
                 aws:SourceArn:
                   Fn::Sub: arn:${AWS::Partition}:cloudformation:${AWS::Region}:${AWS::AccountId}:type/resource/Community-S3-PublicAccessBlock/*
-      Path: "/community-types/"
+      Path: "/"
       Policies:
         - PolicyName: ResourceTypePolicy
           PolicyDocument:

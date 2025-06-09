@@ -13,7 +13,7 @@ export class ResourceModel extends BaseModel {
 
     @Expose({ name: 'InstanceArn' })
     @Transform(
-        ({ value, obj }) =>
+        ({ value, obj }: { value: any, obj: any }) =>
             transformValue(String, 'instanceArn', value, obj, []),
         {
             toClassOnly: true,
@@ -22,7 +22,7 @@ export class ResourceModel extends BaseModel {
     instanceArn?: Optional<string>;
     @Expose({ name: 'ResourceId' })
     @Transform(
-        ({ value, obj }) =>
+        ({ value, obj }: { value: any, obj: any }) =>
             transformValue(String, 'resourceId', value, obj, []),
         {
             toClassOnly: true,
@@ -31,7 +31,7 @@ export class ResourceModel extends BaseModel {
     resourceId?: Optional<string>;
     @Expose({ name: 'PermissionSets' })
     @Transform(
-        ({ value, obj }) =>
+        ({ value, obj }: { value: any, obj: any }) =>
             transformValue(String, 'permissionSets', value, obj, [Array]),
         {
             toClassOnly: true,
@@ -40,7 +40,7 @@ export class ResourceModel extends BaseModel {
     permissionSets?: Optional<Array<string>>;
     @Expose({ name: 'PrincipalId' })
     @Transform(
-        ({ value, obj }) =>
+        ({ value, obj }: { value: any, obj: any }) =>
             transformValue(String, 'principalId', value, obj, []),
         {
             toClassOnly: true,
@@ -49,7 +49,7 @@ export class ResourceModel extends BaseModel {
     principalId?: Optional<string>;
     @Expose({ name: 'PrincipalType' })
     @Transform(
-        ({ value, obj }) =>
+        ({ value, obj }: { value: any, obj: any }) =>
             transformValue(String, 'principalType', value, obj, []),
         {
             toClassOnly: true,
@@ -85,7 +85,7 @@ export class Target extends BaseModel {
 
     @Expose({ name: 'TargetType' })
     @Transform(
-        ({ value, obj }) =>
+        ({ value, obj }: { value: any, obj: any }) =>
             transformValue(String, 'targetType', value, obj, []),
         {
             toClassOnly: true,
@@ -94,7 +94,7 @@ export class Target extends BaseModel {
     targetType?: Optional<string>;
     @Expose({ name: 'TargetIds' })
     @Transform(
-        ({ value, obj }) =>
+        ({ value, obj }: { value: any, obj: any }) =>
             transformValue(String, 'targetIds', value, obj, [Array]),
         {
             toClassOnly: true,

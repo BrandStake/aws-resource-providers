@@ -13,7 +13,7 @@ export class ResourceModel extends BaseModel {
 
     @Expose({ name: 'ControlId' })
     @Transform(
-        ({ value, obj }) =>
+        ({ value, obj }: { value: any, obj: any }) =>
             transformValue(String, 'controlId', value, obj, []),
         {
             toClassOnly: true,
@@ -22,7 +22,7 @@ export class ResourceModel extends BaseModel {
     controlId?: Optional<string>;
     @Expose({ name: 'SuppressionsUpdatedBy' })
     @Transform(
-        ({ value, obj }) =>
+        ({ value, obj }: { value: any, obj: any }) =>
             transformValue(String, 'suppressionsUpdatedBy', value, obj, []),
         {
             toClassOnly: true,
@@ -31,7 +31,7 @@ export class ResourceModel extends BaseModel {
     suppressionsUpdatedBy?: Optional<string>;
     @Expose({ name: 'SuppressCurrentFindingsOnDisabled' })
     @Transform(
-        ({ value, obj }) =>
+        ({ value, obj }: { value: any, obj: any }) =>
             transformValue(Boolean, 'suppressCurrentFindingsOnDisabled', value, obj, []),
         {
             toClassOnly: true,
@@ -40,7 +40,7 @@ export class ResourceModel extends BaseModel {
     suppressCurrentFindingsOnDisabled?: Optional<boolean>;
     @Expose({ name: 'ControlStatus' })
     @Transform(
-        ({ value, obj }) =>
+        ({ value, obj }: { value: any, obj: any }) =>
             transformValue(String, 'controlStatus', value, obj, []),
         {
             toClassOnly: true,
@@ -49,7 +49,7 @@ export class ResourceModel extends BaseModel {
     controlStatus?: Optional<string>;
     @Expose({ name: 'DisabledReason' })
     @Transform(
-        ({ value, obj }) =>
+        ({ value, obj }: { value: any, obj: any }) =>
             transformValue(String, 'disabledReason', value, obj, []),
         {
             toClassOnly: true,

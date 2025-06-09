@@ -13,7 +13,7 @@ export class ResourceModel extends BaseModel {
 
     @Expose({ name: 'ResourceId' })
     @Transform(
-        ({ value, obj }) =>
+        ({ value, obj }: { value: any, obj: any }) =>
             transformValue(String, 'resourceId', value, obj, []),
         {
             toClassOnly: true,
@@ -22,7 +22,7 @@ export class ResourceModel extends BaseModel {
     resourceId?: Optional<string>;
     @Expose({ name: 'EnableEbsEncryptionByDefault' })
     @Transform(
-        ({ value, obj }) =>
+        ({ value, obj }: { value: any, obj: any }) =>
             transformValue(Boolean, 'enableEbsEncryptionByDefault', value, obj, []),
         {
             toClassOnly: true,
@@ -31,7 +31,7 @@ export class ResourceModel extends BaseModel {
     enableEbsEncryptionByDefault?: Optional<boolean>;
     @Expose({ name: 'DefaultEbsEncryptionKeyId' })
     @Transform(
-        ({ value, obj }) =>
+        ({ value, obj }: { value: any, obj: any }) =>
             transformValue(String, 'defaultEbsEncryptionKeyId', value, obj, []),
         {
             toClassOnly: true,
