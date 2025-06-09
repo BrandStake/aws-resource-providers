@@ -11,6 +11,7 @@ const updateFixture = require('./data/update-success.json');
 const updateNotFound = require('./data/update-not-found.json');
 const updateNotUpdatable = require('./data/update-not-updatable.json');
 import { resource, PasswordPolicy } from '../src/handlers';
+import { ResourceModel } from '../src/models';
 
 const IDENTIFIER = 'f3390613-b2b5-4c31-a4c6-66813dff96a6';
 
@@ -63,7 +64,7 @@ describe('when calling handler', () => {
         const spyUuid = jest.spyOn(uuid, 'v4');
         const request = fixtureMap.get(Action.Create);
         const progress = await resource.testEntrypoint({ ...testEntrypointPayload, action: Action.Create, request });
-        const model = PasswordPolicy.deserialize({
+        const model = ResourceModel.deserialize({
             ...request?.desiredResourceState,
             ResourceId: IDENTIFIER,
         });
