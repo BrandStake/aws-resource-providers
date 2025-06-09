@@ -1,5 +1,6 @@
 import { on, AwsServiceMockBuilder, AwsFunctionMockBuilder } from '@jurijzahn8019/aws-promise-jest-mock';
 import { SSOAdmin } from 'aws-sdk';
+import * as uuid from 'uuid';
 import { Action, exceptions, OperationStatus, SessionProxy } from '@amazon-web-services-cloudformation/cloudformation-cli-typescript-lib';
 import createFixture from './data/create-success.json';
 import deleteFixture from './data/delete-success.json';
@@ -11,11 +12,9 @@ const IDENTIFIER = '8f9be413-f9cc-49a1-b901-0a59a6f126c2';
 
 jest.mock('aws-sdk');
 
-jest.mock('uuid', () => {
-    return {
-        v4: () => IDENTIFIER,
-    };
-});
+jest.mock('uuid', () => ({
+    v4: () => IDENTIFIER,
+}));
 
 describe('when calling handler', () => {
     let testEntrypointPayload: any;
@@ -67,9 +66,11 @@ describe('when calling handler', () => {
     });
 
     test('create will create account assignment for each principal x target', async () => {
+        const spyUuid = jest.spyOn(uuid, 'v4');
         const request = fixtureMap.get(Action.Create);
         const progress = await resource.testEntrypoint({ ...testEntrypointPayload, action: Action.Create, request }, null);
         expect(progress).toMatchObject({ status: OperationStatus.Success, message: '', callbackDelaySeconds: 0 });
+        expect(spyUuid).toHaveBeenCalledTimes(1);
         expect(progress.resourceModel.serialize()).toMatchObject({
             ...request.desiredResourceState,
             ResourceId: `arn:community::123456789012:principal-assignments:GROUP:123123/${IDENTIFIER}`,
